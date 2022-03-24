@@ -12,7 +12,7 @@
       <textarea 
         name="new message"
         v-if="showMessage"
-        :value="message"
+        :value="scrambleMessage"
         class="textfield"
         readonly
       >
@@ -41,6 +41,11 @@ export default {
         this.error = 'Message field is empty!'
         this.showMessage = false
       }
+    }
+  },
+  computed: {
+    scrambleMessage() {
+      return this.message.split('').sort(function(){return 0.5-Math.random()}).join('');
     }
   }
 }
