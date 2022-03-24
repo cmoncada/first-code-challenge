@@ -7,7 +7,7 @@
         v-model="message"
         class="textfield">
       </textarea>
-      <button class="button" @click="toggleMesage">Show message</button>
+      <button class="button" @click="toggleMessage">{{buttonText}}</button>
       <span class="error" v-if="error != ''">{{ error }}</span>
       <textarea 
         name="new message"
@@ -28,11 +28,12 @@ export default {
     return {
       message: '',
       showMessage: false,
-      error: ''
+      error: '',
+      buttonText: 'Show Message'
     }
   },
   methods: {
-    toggleMesage () {
+    toggleMessage () {
       if (this.message != '') {
         this.showMessage = !this.showMessage
         this.error = ''
@@ -41,6 +42,8 @@ export default {
         this.error = 'Message field is empty!'
         this.showMessage = false
       }
+
+      this.showMessage === false ? this.buttonText = 'Show Message' : this.buttonText = 'Hide Message'
     }
   },
   computed: {
